@@ -16,5 +16,5 @@ At the moment you need to install the chrome extention by hand. Perhaps in the f
 1. Select the src directory
 1. Enjoy!
 
-Do not forget to 'git pull' now and again for to update.
+Do not forget to `git pull` now and again for to update.
 
