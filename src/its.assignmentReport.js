@@ -48,7 +48,7 @@ $(function () {
                 rows.find('td:first').attr('nowrap', '');
                 rows.find('td:contains("Needs"), td:contains("rättad")').text('RE').attr('title','They have resubmitted');
                 rows.find('td:contains("skicka"), td:contains("Resub")').text('WTG').attr('title','They need to resubmit');
-                rows.find('td:contains("Inte"), td:contains("sub"), td:contains("No assessment")').text('');
+                
                
                 rows.find('td span').remove(); //remove the keywords (Klar, ...)
                 rows.find('a').replaceWith(function (a) { return $(this).text(); }); //remove links
@@ -59,10 +59,12 @@ $(function () {
                 });
                 rows.find('td:last').each(function (i, td) {
                     var el = $(td);
-                    if (el.text() == "(U)" || el.text() == "(F)" || el.text() == "F/(F)" || el.text() == "U/(U)") {
+                    alert(el.text());
+                    if (el.text() == "(U)" || el.text() == "(F)" || el.text() == "F/(F)" || el.text() == "U/(U)"|| el.text().indexOf('0 Godkänd, 0') >= 0) {
                         $(td).closest('tr').addClass('idiot');
                     }
                 });
+                rows.find('td:contains("Inte"), td:contains("sub"), td:contains("No assessment")').text(''); //Needs to be done here else courses with grades like "0 Godkänd, 0/(5) Inte godkänd" wont be marked
                 rows.find('td').each(function() {  //Courses with only Godkänt... replace with G
                     var text = $(this).text().replace('Godkänd', 'G');
                     $(this).text(text);

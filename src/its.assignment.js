@@ -41,6 +41,7 @@ $(function () {
 
     function markPage() {
         markRows("Completed");
+        markRows("Complete");
         markRows("Klar");
         markRows("Not submitted");
         markRows("Inte inlämnad");
