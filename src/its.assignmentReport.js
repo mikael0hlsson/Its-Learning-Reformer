@@ -11,6 +11,7 @@ if(chrome.extension)
 
 $(function () {
     var isColumnAdded=false;
+
     function addPersonalNumberColumn(){
         if(isColumnAdded)
             return;
@@ -19,6 +20,7 @@ $(function () {
         isColumnAdded=true;
     }
 
+
     var num = $('.pagesize').html().match(/\d+/g)[2]
 
     var location = document.location.href;
@@ -26,6 +28,12 @@ $(function () {
         location = location.substr(0, location.indexOf('&')); //remove extra parameters
 
     var mainTable = $('table tbody');
+
+    function hideAverageGradeColumn(){
+        mainTable.find("tr:lt(1) th:last-child").hide();
+        mainTable.find("tr:gt(0) td:last-child").hide();
+    }
+
 
     $('tr:not(.header)', mainTable).remove(); //clear the table    
 
@@ -40,7 +48,8 @@ $(function () {
                 rows.find('td:first').attr('nowrap', '');
                 rows.find('td:contains("Needs"), td:contains("rättad")').text('RE').attr('title','They have resubmitted');
                 rows.find('td:contains("skicka"), td:contains("Resub")').text('WTG').attr('title','They need to resubmit');
-                rows.find('td:contains("Inte"), td:contains("sub"), td:contains("No assessment")').text('-');
+                rows.find('td:contains("Inte"), td:contains("sub"), td:contains("No assessment")').text('');
+               
                 rows.find('td span').remove(); //remove the keywords (Klar, ...)
                 rows.find('a').replaceWith(function (a) { return $(this).text(); }); //remove links
                 rows.find('td:contains("*")').text(function (a) { return $(this).text().replace("*", ""); });
@@ -54,7 +63,10 @@ $(function () {
                         $(td).closest('tr').addClass('idiot');
                     }
                 });
-
+                rows.find('td').each(function() {  //Courses with only Godkänt... replace with G
+                    var text = $(this).text().replace('Godkänd', 'G');
+                    $(this).text(text);
+                });
                 mainTable.append(rows);
 
             }, async: false
@@ -66,7 +78,7 @@ $(function () {
 
     $('.tablefooter, .itsl-toplinks-line, .standardfontsize').remove();
 
-    $('<button style="float:right" class="login-button">Hide/Show idiots</button>').click(function () {
+    $('<button style="float:right" class="login-button">Hide/Show People with no handins</button>').click(function () {
         mainTable.find('.idiot').toggle();
     }).prependTo($('body'));
 
@@ -100,18 +112,19 @@ $(function () {
 
     mainTable.find('td').each(function (i, td) {
         var text = $(td).text().trim();
-        if (text == "VG" || text == "A" || text == "B") {
-            $(td).html($('<span/>', { text: text, class: 'colorbox_green' }));
+        if (text == "VG" || text == "A" || text == "B" || text == "G" || text == "C") {
+            $(td).addClass('colorbox_green');
         }
-        if (text == "G" || text == "C") {
-            $(td).html($('<span/>', { text: text, class: 'colorbox_blue' }));
-        }
+        //if (text == "G" || text == "C") {
+        //    $(td).html($('<span/>', { text: text, class: 'colorbox_blue' }));
+        //}
         if (text == "RE") {
-            $(td).html($('<span/>', { text: text, class: 'colorbox_red' }));
+            $(td).css('background-color', 'red'); //Brighter warning
         }
         if (text == "WTG") {
-            $(td).html($('<span/>', { text: text, class: 'colorbox_yellow' }));
+            $(td).addClass('colorbox_yellow');
         }
     });
 
+    hideAverageGradeColumn();
 });
