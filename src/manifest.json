@@ -1,0 +1,54 @@
+{
+  "manifest_version": 2,
+
+  "name": "It's Learning Reformer",
+  "description": "Finally! This extension enhances the \"it's learning\" website content by introducing a few changes. Adding some functionalities to a few pages, changing the way pages loads to provide a richer experience that brings more convenience. It can currently be used by teachers from Malmö University.",
+  "version": "2.1",
+  "icons": {"128": "resources/icon_128.png"},
+  
+  "permissions": [
+    "https://mah.itslearning.com/"
+  ],  
+
+  "page_action": {
+    "default_title": "It's Learning Reformer",
+    "default_icon": "resources/icon_128.png",
+    "default_popup": "about.html"
+  },
+
+  "background": { "scripts": ["background.js"] },
+
+  "web_accessible_resources": ["lib/jquery-2.0.3.min.js", "lib/jquery-2.0.3.min.map"],
+
+  "content_scripts": [
+      {
+        "matches": [ 
+            "https://mah.itslearning.com/Dashboard/Dashboard.aspx*",
+            "https://mah.itslearning.com/essay/read_essay.aspx?EssayID=*",
+            "https://mah.itslearning.com/Status/AssignmentsReport.aspx?CourseID=*"
+             ],
+         "js": [ "lib/jquery-2.0.3.min.js" ],
+         "run_at": "document_end",
+         "all_frames": true  
+      }
+      ,
+      {
+        "matches": [ "https://mah.itslearning.com/Dashboard/Dashboard.aspx*" ],
+        "js": [ "its.dashboard.js"],
+        "run_at": "document_end",
+        "all_frames": true  
+      },
+      {
+        "matches": [ "https://mah.itslearning.com/essay/read_essay.aspx?EssayID=*" ],
+        "js": [ "lib/jquery.timeago.js", "its.assignment.js"],
+        "run_at": "document_end",
+        "all_frames": true  
+      },
+      {
+        "matches": [ "https://mah.itslearning.com/Status/AssignmentsReport.aspx?CourseID=*" ],
+        "js": [ "its.assignmentReport.js"],
+        "run_at": "document_end",
+        "all_frames": true  
+      }
+  ]
+}
