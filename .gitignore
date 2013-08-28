@@ -116,5 +116,5 @@ Session.vim
 *~
 # Project specific #############
 *.pem
-#private/
+private/
 *.crx
