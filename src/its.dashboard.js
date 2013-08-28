@@ -20,7 +20,7 @@ $(function(){
     function init(){
         
         var button = 
-            $('<button/>', {class:'login-button', text: 'See All Tasks', css:{'cursor': 'pointer'}})
+            $('<button/>', {class:'login-button', id:'seeAllTasks', text: 'See All Tasks', css:{'cursor': 'pointer'}})
         .appendTo(courseWidget.find('.il-widget-header-button'))
         .click(btnTasks_clicked);   
         
@@ -46,6 +46,7 @@ $(function(){
         });
         
         courseWidget.find('th:last').text("Tasks");
+        $('#seeAllTasks').hide();
     }
     
     function getTasksFromCoursePage(html)
