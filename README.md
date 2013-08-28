@@ -18,3 +18,10 @@ At the moment you need to install the chrome extention by hand. Perhaps in the f
 
 Do not forget to `git pull` now and again for to update.
 
+## Features
+### Enhanced dashboard
+![Enhanced dashboard](https://github.com/dogbrain/Its-Learning-Reformer/blob/master/src/resources/Dashboard.png?raw=true)
+### Enhanced assignment environment
+![Enhanced assignment environment](https://github.com/dogbrain/Its-Learning-Reformer/blob/master/src/resources/Assignment.png?raw=true)
+### Enhanced reports
+![Enhanced reports](https://github.com/dogbrain/Its-Learning-Reformer/blob/master/src/resources/Report.png?raw=true)
