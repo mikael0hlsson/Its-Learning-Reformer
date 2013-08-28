@@ -10,6 +10,14 @@ if(chrome.extension)
     chrome.extension.sendRequest({}, function(response) {});
 
 $(function () {
+    var isColumnAdded=false;
+    function addPersonalNumberColumn(){
+        if(isColumnAdded)
+            return;
+        $(".tablelisting table tr:lt(1)").prepend("<th>Personnummer</th>");
+        $(".tablelisting table tr:gt(0)").prepend("<td>#</td>");
+        isColumnAdded=true;
+    }
 
     var num = $('.pagesize').html().match(/\d+/g)[2]
 
@@ -63,12 +71,8 @@ $(function () {
     }).prependTo($('body'));
 
     $('<button class="login-button">Inject Personal Numbers</button>').click(function () {
-        $(this).remove();
-
+        addPersonalNumberColumn();
         var str = $('textarea').val();
-
-        var nameColumn = mainTable.find('tr.header th:eq(0)');
-        $('<th/>', { text: 'Personal' }).insertBefore(nameColumn);
 
         var arr = str.split('\n'); var people = [];
         for (var i = 0; i < arr.length; i++) {
@@ -76,16 +80,17 @@ $(function () {
             people.push(arr[i].replace(',', '').split('\t'));
         }
 
-        mainTable.find('tr').find('td:first').each(function (i, td) {
+        mainTable.find('tr').find('td:nth-child(2)').each(function (i, td) {
             var name = $(this).text().replace(',', '');
-
             for (var i = 0; i < people.length; i++) {
                 if (name.toLowerCase() == people[i][1].toLowerCase()) {
-                    $('<td/>', { text: people[i][0] }).insertBefore($(td));
+                    if($(this).prev().text()=='#' || $(this).prev().text()==people[i][0])
+                        $(this).prev().text(people[i][0]);
+                    else
+                        alert('Warning! \nThe personal number was different that the one inserted\n for the user: '+$(this).text());
                     return;
                 }
             }
-            $('<td/>', { text: '#' }).insertBefore($(td));
         });
 
 
