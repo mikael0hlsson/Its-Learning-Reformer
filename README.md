@@ -1,5 +1,7 @@
 # Its-Learning-Reformer
-An chrome extention to make It's learning better. 
+An chrome extention to make It's learning better. Removes anoying things and makes It's Learning more workable.
+
+Please feel free to fork, help out, request features etc. 
 
 ## Credits
 Ali Arafati - <arafati.ali@gmail.com>
@@ -25,3 +27,7 @@ Do not forget to `git pull` now and again for to update.
 ![Enhanced assignment environment](https://github.com/dogbrain/Its-Learning-Reformer/blob/master/src/resources/Assignment.png?raw=true)
 ### Enhanced reports
 ![Enhanced reports](https://github.com/dogbrain/Its-Learning-Reformer/blob/master/src/resources/Report.png?raw=true)
+
+### Known limitations
+* Only works on https://mah.itslearning.com/ (tell us what your url is and we might add it)
+* Only works in Swedish and English (you are welcome to help out with porting iut to another language. And on the subject a small message to Its Learning: ever heard of id?) 
