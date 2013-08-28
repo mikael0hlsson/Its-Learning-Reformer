@@ -36,7 +36,7 @@ $(function () {
 
 
     $('tr:not(.header)', mainTable).remove(); //clear the table    
-
+    var showButton=true;
     var From = 0;
     while (num > 0) {
         $.ajax({
@@ -52,19 +52,23 @@ $(function () {
                
                 rows.find('td span').remove(); //remove the keywords (Klar, ...)
                 rows.find('a').replaceWith(function (a) { return $(this).text(); }); //remove links
-                rows.find('td:contains("*")').text(function (a) { return $(this).text().replace("*", ""); });
+                
 
                 rows.find('td:last:contains("(F)"), td:last:contains("(U)")').each(function (i, td) {
                     $(td).closest('tr').addClass('incomplete');
                 });
                 rows.find('td:last').each(function (i, td) {
                     var el = $(td);
-                    alert(el.text());
                     if (el.text() == "(U)" || el.text() == "(F)" || el.text() == "F/(F)" || el.text() == "U/(U)"|| el.text().indexOf('0 Godkänd, 0') >= 0) {
                         $(td).closest('tr').addClass('idiot');
                     }
+                    if(el.text() == "**")
+                    {
+                        showButton=false;
+                    }
                 });
                 rows.find('td:contains("Inte"), td:contains("sub"), td:contains("No assessment")').text(''); //Needs to be done here else courses with grades like "0 Godkänd, 0/(5) Inte godkänd" wont be marked
+                rows.find('td:contains("*")').text(function (a) { return $(this).text().replace("*", ""); });// same as above
                 rows.find('td').each(function() {  //Courses with only Godkänt... replace with G
                     var text = $(this).text().replace('Godkänd', 'G');
                     $(this).text(text);
@@ -80,10 +84,13 @@ $(function () {
 
     $('.tablefooter, .itsl-toplinks-line, .standardfontsize').remove();
 
-    $('<button style="float:right" class="login-button">Hide/Show People with no handins</button>').click(function () {
-        mainTable.find('.idiot').toggle();
-    }).prependTo($('body'));
-
+    if(showButton){
+        $('<button style="float:right" class="login-button">Hide/Show People with no handins</button>').click(function () {
+            mainTable.find('.idiot').toggle();
+        }).prependTo($('body'));
+    }else{
+        $('<label style="float:right">Mixed grades. Cant toggle people.</label>').prependTo($('body'));
+    }
     $('<button class="login-button">Inject Personal Numbers</button>').click(function () {
         addPersonalNumberColumn();
         var str = $('textarea').val();
@@ -114,7 +121,7 @@ $(function () {
 
     mainTable.find('td').each(function (i, td) {
         var text = $(td).text().trim();
-        if (text == "VG" || text == "A" || text == "B" || text == "G" || text == "C") {
+        if (text == "VG" || text == "A" || text == "B" || text == "G" || text == "C" || text == "Klar") {
             $(td).addClass('colorbox_green');
         }
         //if (text == "G" || text == "C") {
