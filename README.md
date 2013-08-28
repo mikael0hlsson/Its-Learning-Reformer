@@ -30,4 +30,4 @@ Do not forget to `git pull` now and again for to update.
 
 ### Known limitations
 * Only works on https://mah.itslearning.com/ (tell us what your url is and we might add it)
-* Only works in Swedish and English (you are welcome to help out with porting iut to another language. And on the subject a small message to Its Learning: ever heard of id?) 
+* Only works in Swedish and English (you are welcome to help out with porting it to another language. And on the subject, a small message to Its Learning: ever heard of id?) 
