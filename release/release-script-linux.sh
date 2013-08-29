@@ -15,8 +15,8 @@ echo "Current version: $majorVersion.$minorVersion"
 minorVersion=$(($minorVersion + 1))
 echo "New version:     $majorVersion.$minorVersion"
 echo "
-Updating version in manifest file"
-cat ../src/manifest.json | jq '.version="'$majorVersion'.'$minorVersion'"' >> temp
+Updating version in manifest file" 
+sed "s#\"version\":.*#\"version\": \""$majorVersion"."$minorVersion"\",#"  ../src/manifest.json >> temp
 mv temp ../src/manifest.json
 echo "Done!"
 echo "
