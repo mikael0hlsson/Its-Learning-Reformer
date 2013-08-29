@@ -1,71 +1,72 @@
 {
-  "web_accessible_resources": [
-    "lib/jquery-2.0.3.min.js",
-    "lib/jquery-2.0.3.min.map"
-  ],
-  "content_scripts": [
-    {
-      "matches": [
-        "https://mah.itslearning.com/Dashboard/Dashboard.aspx*",
-        "https://mah.itslearning.com/essay/read_essay.aspx?EssayID=*",
-        "https://mah.itslearning.com/Status/AssignmentsReport.aspx?CourseID=*"
-      ],
-      "js": [
-        "lib/jquery-2.0.3.min.js"
-      ],
-      "run_at": "document_end",
-      "all_frames": true
-    },
-    {
-      "matches": [
-        "https://mah.itslearning.com/Dashboard/Dashboard.aspx*"
-      ],
-      "js": [
-        "its.dashboard.js"
-      ],
-      "run_at": "document_end",
-      "all_frames": true
-    },
-    {
-      "matches": [
-        "https://mah.itslearning.com/essay/read_essay.aspx?EssayID=*"
-      ],
-      "js": [
-        "lib/jquery.timeago.js",
-        "its.assignment.js"
-      ],
-      "run_at": "document_end",
-      "all_frames": true
-    },
-    {
-      "matches": [
-        "https://mah.itslearning.com/Status/AssignmentsReport.aspx?CourseID=*"
-      ],
-      "js": [
-        "its.assignmentReport.js"
-      ],
-      "run_at": "document_end",
-      "all_frames": true
-    }
-  ],
-  "name": "It's Learning Reformer",
-  "manifest_version": 2,
-  "version": "0.1",
-  "description": "Finally! This extension enhances the \"it's learning\" website content by introducing a few changes. Adding some functionalities to a few pages, changing the way pages loads to provide a richer experience that brings more convenience. It can currently be used by teachers from Malmö University.",
-  "permissions": [
-    "https://mah.itslearning.com/"
-  ],
-  "icons": {
-    "128": "resources/icon_128.png"
+  "page_action": {
+    "default_popup": "about.html",
+    "default_icon": "resources/icon_128.png",
+    "default_title": "It's Learning Reformer"
   },
   "background": {
     "scripts": [
       "background.js"
     ]
   },
-  "page_action": {
-    "default_title": "It's Learning Reformer",
-    "default_icon": "resources/icon_128.png",
-    "default_popup": "about.html"
-  }
+  "icons": {
+    "128": "resources/icon_128.png"
+  },
+  "web_accessible_resources": [
+    "lib/jquery-2.0.3.min.js",
+    "lib/jquery-2.0.3.min.map"
+  ],
+  "content_scripts": [
+    {
+      "all_frames": true,
+      "run_at": "document_end",
+      "js": [
+        "lib/jquery-2.0.3.min.js"
+      ],
+      "matches": [
+        "https://mah.itslearning.com/Dashboard/Dashboard.aspx*",
+        "https://mah.itslearning.com/essay/read_essay.aspx?EssayID=*",
+        "https://mah.itslearning.com/Status/AssignmentsReport.aspx?CourseID=*"
+      ]
+    },
+    {
+      "all_frames": true,
+      "run_at": "document_end",
+      "js": [
+        "its.dashboard.js"
+      ],
+      "matches": [
+        "https://mah.itslearning.com/Dashboard/Dashboard.aspx*"
+      ]
+    },
+    {
+      "all_frames": true,
+      "run_at": "document_end",
+      "js": [
+        "lib/jquery.timeago.js",
+        "its.assignment.js"
+      ],
+      "matches": [
+        "https://mah.itslearning.com/essay/read_essay.aspx?EssayID=*"
+      ]
+    },
+    {
+      "all_frames": true,
+      "run_at": "document_end",
+      "js": [
+        "its.assignmentReport.js"
+      ],
+      "matches": [
+        "https://mah.itslearning.com/Status/AssignmentsReport.aspx?CourseID=*"
+      ]
+    }
+  ],
+  "name": "It's Learning Reformer",
+  "update_url": "https://github.com/dogbrain/Its-Learning-Reformer/raw/master/release/update.xml",
+  "manifest_version": 2,
+  "version": "0.1",
+  "description": "Finally! This extension enhances the \"it's learning\" website content by introducing a few changes. Adding some functionalities to a few pages, changing the way pages loads to provide a richer experience that brings more convenience. It can currently be used by teachers from Malmö University.",
+  "permissions": [
+    "https://mah.itslearning.com/"
+  ]
 }
