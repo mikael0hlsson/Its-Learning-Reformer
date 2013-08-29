@@ -1,12 +1,31 @@
 dir=../src
-key=../private/Its-Learning-Reformer.pem
+key=Its-Learning-Reformer.pem
 name="Its-Learning-Reformer"
 crx="$name.crx"
 pub="$name.pub"
 sig="$name.sig"
 zip="$name.zip"
 trap 'rm -f "$pub" "$sig" "$zip"' EXIT
-
+#Read verison from application-version
+version=$(cat ../src/manifest.json | jq '.version' | sed 's/\"//g' ) # requires http://stedolan.github.io/jq/
+versionArray=(${version//./ })
+majorVersion=${versionArray[0]}
+minorVersion=${versionArray[1]}
+echo "Current version: $majorVersion.$minorVersion"
+minorVersion=$(($minorVersion + 1))
+echo "New version:     $majorVersion.$minorVersion"
+echo "
+Updating version in manifest file"
+cat ../src/manifest.json | jq '.version="'$majorVersion'.'$minorVersion'"' >> temp
+mv temp ../src/manifest.json
+echo "Done!"
+echo "
+Updating version in update.xml"
+sed "s#<updatecheck codebase.*#<updatecheck codebase='https://github.com/dogbrain/Its-Learning-Reformer/raw/master/release/Its-Learning-Reformer.crx' version='"$majorVersion"."$minorVersion"' />#"  update.xml >> temp
+mv temp update.xml
+echo "Done!"
+echo "
+Building file"
 # zip up the crx dir
 cwd=$(pwd -P)
 (cd "$dir" && zip -qr -9 -X "$cwd/$zip" .)
