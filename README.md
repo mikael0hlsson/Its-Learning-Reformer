@@ -1,5 +1,5 @@
 # Its-Learning-Reformer
-This extension enhances the \"it's learning\" website content by introducing a few changes. It manipulates a few pages, changing the way pages loads to provide a richer experience that brings more convenience and usability. It currently targets teachers from Malmö University.
+This extension enhances the "it's learning" website content by introducing a few changes. It manipulates a few pages, changing the way pages loads to provide a richer experience that brings more convenience and usability. It currently targets teachers from Malmö University.
 
 Please feel free to fork, help out, request features etc. 
 
