@@ -9,9 +9,15 @@ Ali Arafati - <arafati.ali@gmail.com>
 Mikael Ohlsson - <mikael@0hlsson.se> - <http://0hlsson.se>
 
 ## Installation
-At the moment you need to install the chrome extention manually.
+You can either choose to download the plugin or be cutting edge and use the developer version.
 
-### Step by step instructions 
+### Set by step instructions for stable version
+1. Right click [this](https://github.com/dogbrain/Its-Learning-Reformer/raw/master/release/Its-Learning-Reformer.crx) and select 'save link as'
+1. Open up chrome://extensions in the url field. 
+1. Drag the file into the browser window and select add
+1. Enjoy!
+
+### Step by step instructions for development version
 1. Clone the repository `git clone https://github.com/dogbrain/Its-Learning-Reformer.git`
 1. Open up chrome://extensions in the url field. 
 1. Click "Load unpacked extention".
