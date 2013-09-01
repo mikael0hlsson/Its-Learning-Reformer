@@ -32,7 +32,7 @@ Do not forget to `git pull` now and again for to update.
 ### Enhanced assignment environment
 ![Enhanced assignment environment](https://github.com/dogbrain/Its-Learning-Reformer/blob/master/src/resources/Assignment.png?raw=true)
 ### Enhanced reports
-![Enhanced reports](https://github.com/dogbrain/Its-Learning-Reformer/blob/master/src/resources/Report.png?raw=true)
+![Enhanced reports](https://github.com/dogbrain/Its-Learning-Reformer/blob/master/src/resources/AssignmentReport.png?raw=true)
 
 ### Known limitations
 * Only works on https://mah.itslearning.com/ (tell us what your url is and we might add it)
