@@ -183,6 +183,14 @@ $(function () {
                     if (name.toLowerCase() == people[i][1].toLowerCase()) {
                         if($(this).prev().text()=='#' || $(this).prev().text()==people[i][0])
                             $(this).prev().text(people[i][0]);
+                        else{ 
+                            alert("You have a different personal number for "+name+
+                                " that already has been given a personal number.\n\nThe reason for this might be that your "+
+                                "list may contain people with the same name that is not on its learning (then it should "+
+                                "have been marked as an duplicate already).\n\n Since you "+
+                                "have recieved this message you can not trust the data that have been generated here. "+
+                                "Please locate the error!");
+                        }
                     }
                 }
             }else if(numberOfpeoplewithThatName>1){
