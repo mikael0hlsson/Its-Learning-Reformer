@@ -21,7 +21,7 @@ $(function () {
         "G", "VG" , "MVG", //Swedish
         "Klar"  
     ];
-
+    var missingPersonalNumberText="#";
     var nonPassingGrades=[
         "F", "U"
     ];
@@ -58,7 +58,7 @@ $(function () {
         if(isColumnAdded)
             return;
         $(".tablelisting table tr:lt(1)").prepend("<th>Personnummer</th>");
-        $(".tablelisting table tr:gt(0)").prepend("<td>#</td>");
+        $(".tablelisting table tr:gt(0)").prepend("<td>"+missingPersonalNumber+"</td>");
         addPeopleToList(); //needs to be done once.. so here is a good place... (since the column needs to be added)
         isColumnAdded=true;
     }
@@ -181,7 +181,7 @@ $(function () {
             if(numberOfpeoplewithThatName==1){
                 for (var i = 0; i < people.length; i++) {
                     if (name.toLowerCase() == people[i][1].toLowerCase()) {
-                        if($(this).prev().text()=='#' || $(this).prev().text()==people[i][0])
+                        if($(this).prev().text()==missingPersonalNumberText || $(this).prev().text()==people[i][0])
                             $(this).prev().text(people[i][0]);
                         else{ 
                             alert("You have a different personal number for "+name+
