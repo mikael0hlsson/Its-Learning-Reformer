@@ -58,7 +58,7 @@ $(function () {
         if(isColumnAdded)
             return;
         $(".tablelisting table tr:lt(1)").prepend("<th>Personnummer</th>");
-        $(".tablelisting table tr:gt(0)").prepend("<td>"+missingPersonalNumber+"</td>");
+        $(".tablelisting table tr:gt(0)").prepend("<td>"+missingPersonalNumberText+"</td>");
         addPeopleToList(); //needs to be done once.. so here is a good place... (since the column needs to be added)
         isColumnAdded=true;
     }
@@ -134,6 +134,7 @@ $(function () {
                     for(var index=0; index<textsToReplaceWithG.length;index++)
                     {
                         var text = $(this).text().replace(textsToReplaceWithG[index], 'G');
+                        text=$.trim(text); //Trim white spaces
                         $(this).text(text);
                     }
                 });

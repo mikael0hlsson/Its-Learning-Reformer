@@ -8,7 +8,8 @@
   "update_url": "https://github.com/dogbrain/Its-Learning-Reformer/raw/master/release/update.xml",
   
   "permissions": [
-    "https://mah.itslearning.com/"
+    "https://mah.itslearning.com/",
+    "storage"
   ],  
 
   "page_action": {

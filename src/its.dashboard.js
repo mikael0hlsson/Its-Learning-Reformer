@@ -11,10 +11,12 @@ if(chrome.extension)
     chrome.extension.sendRequest({}, function(response) {});
 
 $(function(){
-
+    var swedish=false;
 
     var courseWidget = getWidget(document, "Courses");
-    
+    if(courseWidget.length==0)
+        courseWidget = getWidget(document, "Kurser");
+        swedish=true;
     init();
     
     function init(){
@@ -25,6 +27,8 @@ $(function(){
         .click(btnTasks_clicked);   
         
         var newsWidget = getWidget(document, "News").hide();
+        var newsWidget = getWidget(document, "Nyheter").hide();
+           
     }
     
     function btnTasks_clicked(e)
@@ -51,7 +55,11 @@ $(function(){
     
     function getTasksFromCoursePage(html)
     {
-        var taskWidget = getWidget(html, "Follow up tasks");
+        var taskWidget;
+        if(!swedish) 
+            taskWidget= getWidget(html, "Follow up tasks");
+        else
+            taskWidget= getWidget(html, "Följ upp uppgifter");
         var list = taskWidget.find('.il-widget-bottom ul li');
         
         var tasks = $.map(list, function(li, i){

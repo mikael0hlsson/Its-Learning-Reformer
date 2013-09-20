@@ -11,18 +11,25 @@ if(chrome.extension)
     chrome.extension.sendRequest({}, function(response) {});
 
 $(function () {
+
     
     markPage();
     fixColors();
-    toggleRows();
+    //alert(localStorage.toggleOn);
+    if(localStorage.toggleOff!='false')
+            toggleRows();
+
 
     var icon = 'https://statics.itslearning.com/v3.42.1.195/icons/xp/search_no_shadow16.png';
     $('.toolbar').append('<ul style=float:right><li style=background-color:orange><img src="' + icon + '" /><a id=btnToggle href=#><b>Toggle See All</b></a></li></ul>');
 
     $('#btnToggle').click(function (e) {
         e.preventDefault();
-
         toggleRows();
+        if(localStorage.toggleOff=='false')
+            localStorage.toggleOff=true;
+        else
+            localStorage.toggleOff=false;
     });
 
 
@@ -31,6 +38,7 @@ $(function () {
 
     function toggleRows() {
         $("#EssayAnswers_EssayAnswers .remove").slideToggle();
+        
     }
 
     function markRows(text) {
