@@ -3,7 +3,7 @@
 
   "name": "It's Learning Reformer",
   "description": "Finally! This extension enhances the \"it's learning\" website content by introducing a few changes. Adding some functionalities to a few pages, changing the way pages loads to provide a richer experience that brings more convenience. It can currently be used by teachers from Malmö University.",
-  "version": "0.3",
+  "version": "0.4",
   "icons": {"128": "resources/icon_128.png"},
   "update_url": "https://github.com/dogbrain/Its-Learning-Reformer/raw/master/release/update.xml",
   

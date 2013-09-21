@@ -4,7 +4,7 @@
 // @version    0.1
 // @description  enter something useful
 // @match      *mah.itslearning.com/Dashboard/Dashboard.aspx*
-// @copyright  Ali Arafati
+// @copyright  Ali Arafati, Mikael Ohlsson
 // ==/UserScript==
 
 if(chrome.extension)
@@ -14,9 +14,10 @@ $(function(){
     var swedish=false;
 
     var courseWidget = getWidget(document, "Courses");
-    if(courseWidget.length==0)
+    if(courseWidget.length==0){
         courseWidget = getWidget(document, "Kurser");
         swedish=true;
+    }
     init();
     
     function init(){
