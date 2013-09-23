@@ -50,7 +50,7 @@ $(function () {
     ];
 
     var cellsToClear=[
-        "Inte", "sub", "No assessment"
+        "Inte", "sub", "No assessment", "Ingen bedömning"
     ];
     var peopleList=[];
 

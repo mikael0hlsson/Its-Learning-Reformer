@@ -4,7 +4,7 @@
 // @version    0.1
 // @description  enter something useful
 // @match      *mah.itslearning.com/Dashboard/Dashboard.aspx*
-// @copyright  Ali Arafati
+// @copyright  Ali Arafati, Mikael Ohlsson
 // ==/UserScript==
 
 if(chrome.extension)
