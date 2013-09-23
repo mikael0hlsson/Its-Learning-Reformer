@@ -14,9 +14,10 @@ $(function(){
     var swedish=false;
 
     var courseWidget = getWidget(document, "Courses");
-    if(courseWidget.length==0)
+    if(courseWidget.length==0){
         courseWidget = getWidget(document, "Kurser");
         swedish=true;
+    }
     init();
     
     function init(){
@@ -26,24 +27,20 @@ $(function(){
         .appendTo(courseWidget.find('.il-widget-header-button'))
         .click(btnTasks_clicked);   
         
-        var newsWidget = getWidget(document, "News").hide();
-        var newsWidget = getWidget(document, "Nyheter").hide();
-           
-    }
+        var newsWidget = $('#ctl00_ContentPlaceHolder_DashboardLayout li:first').hide();
+          }
     
     function btnTasks_clicked(e)
     {
         e.preventDefault();        
-        
         courseWidget.find('a').each(function(i, anchor){
-            
             var href = anchor.href.replace("main.aspx", "Course/course.aspx");
             //https://mah.itslearning.com/Course/course.aspx?CourseId=17363
             //https://mah.itslearning.com/main.aspx?CourseID=17365
             
             var row = $(anchor).closest('tr');            
             row.find('td:nth-child(3)').text('...').css('width', '20%');
-            
+    
             $.get(href, function(html){
                 row.find('td:nth-child(3)').html(getTasksFromCoursePage(html)).find('div:first').show('fast', showNext);                               
             });
@@ -55,6 +52,7 @@ $(function(){
     
     function getTasksFromCoursePage(html)
     {
+       
         var taskWidget;
         if(!swedish) 
             taskWidget= getWidget(html, "Follow up tasks");
