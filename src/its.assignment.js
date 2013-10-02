@@ -59,12 +59,15 @@ $(function () {
         $("#EssayAnswers_EssayAnswers td span").filter(function () {   //color like swedish
             return $(this).text() == "Needs Grading"
         }).addClass("colorbox_red");
-        $("#EssayAnswers_EssayAnswers td span").filter(function () {   //color like swedish
+        $("#EssayAnswers_EssayAnswers td span").filter(function () {   //color red
             return $(this).text() == "Ej granskad"
         }).addClass("colorbox_red");
         $("#EssayAnswers_EssayAnswers td span").filter(function () {   //no need for color
             return $(this).text() == "Inte godkänt, skicka på nytt"
         }).removeClass("colorbox_red");
+        $("#EssayAnswers_EssayAnswers td span").filter(function () {   //color yellow
+            return $(this).text() == "Granskning pågår"
+        }).addClass("colorbox_yellow");
     }
 
 });
