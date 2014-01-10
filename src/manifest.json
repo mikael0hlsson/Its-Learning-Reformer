@@ -27,7 +27,7 @@
         "matches": [ 
             "https://mah.itslearning.com/Dashboard/Dashboard.aspx*",
             "https://mah.itslearning.com/essay/read_essay.aspx?EssayID=*",
-            "https://mah.itslearning.com/Status/AssignmentsReport.aspx?CourseID=*"
+            "https://mah.itslearning.com/AssessmentRecord/Assignments.aspx?CourseID=*"
              ],
          "js": [ "lib/jquery-2.0.3.min.js" ],
          "run_at": "document_end",
@@ -47,7 +47,7 @@
         "all_frames": true  
       },
       {
-        "matches": [ "https://mah.itslearning.com/Status/AssignmentsReport.aspx?CourseID=*" ],
+        "matches": [ "https://mah.itslearning.com/AssessmentRecord/Assignments.aspx?CourseID=*" ],
         "js": [ "its.assignmentReport.js"],
         "run_at": "document_end",
         "all_frames": true  
