@@ -10,6 +10,7 @@ if(chrome.extension)
     chrome.extension.sendRequest({}, function(response) {});
 
 $(function () {
+	displaySpinner();
     var isColumnAdded=false;
     var numberOfPages = $('.ccl-pager li:nth-last-child(2)').text(); //Number of pages
     // var location = document.location.href;    
@@ -33,7 +34,14 @@ $(function () {
     // ];
 
    
-    
+    function displaySpinner(){
+		
+		$("body").append('<div id="SpinnerSpinn" style="position: fixed;width: 100%; height: 100%;background: black url(http://www.ajaxload.info/cache/FF/FF/FF/00/00/00/36-1.gif) center center no-repeat;opacity: .5; top:0px; left:0px;z-index:1000">MUHAHAHA</div>');
+	}
+	
+	function removeSpinner(){
+		$("#SpinnerSpinn").remove();
+	}
     
 
     var textsToReplaceWithG=[
@@ -106,12 +114,15 @@ $(function () {
 					findCellsThatContains(rows, resubmitIdentifyers).text(resubmitText).attr('title', resubmitTitle);
 					findCellsThatContains(rows, needsGradingIdentifyers).text(needsGradingText).attr('title',needsGradingTitle);
 					
-					//rows.find('td .status').remove(); //remove the keywords (Klar, ...)
+					$('#assignments-table tbody td').text(function () {
+						return $(this).text().replace("Klar", ""); 
+					});
 					
 					
 					
 					findCellsThatContains(rows, textsToReplaceWithG).text("G");
 					//Remove all other bs
+					
 					$('#assignments-table').find('br').remove(); //remove line feeds
 					$('#assignments-table span').contents().unwrap(); //remove spans
 					rows.find('img').remove(); //remove image
@@ -135,6 +146,7 @@ $(function () {
 	
 
 	function loadAllPeople(){
+		
 		for(var page=1;page<=numberOfPages;page++){
 			$( "input:hidden[name=__EVENTTARGET]" ).val('ctl00$ContentPlaceHolder$GridPager');
 			$( "input:hidden[name=__EVENTARGUMENT]" ).val('PageNumber_'+page);
@@ -154,6 +166,7 @@ $(function () {
 			});
 		}
 		addPeopleToList();
+		
 	}
 
     //$('.tablefooter, .itsl-toplinks-line, .standardfontsize').remove();
@@ -257,4 +270,5 @@ $(function () {
 	addInjectHtml();
 	replaceTexts();
 	colorData();
+	removeSpinner();
 });

@@ -11,6 +11,7 @@ if(chrome.extension)
     chrome.extension.sendRequest({}, function(response) {});
 
 $(function () {
+	displaySpinner();
 	var numberOfPages = $('.ccl-pager li:nth-last-child(2)').text(); //Number of pages
     var mainTable = $('.tablelisting tbody');
 	$('tr', mainTable).not("#EssayAnswers_0").remove(); //remove current page
@@ -19,6 +20,7 @@ $(function () {
 	
     markPage();
     fixColors();
+	removeSpinner();
     //alert(localStorage.toggleOn);
     if(localStorage.toggleOff!='false')
             toggleRows();
@@ -40,6 +42,14 @@ $(function () {
     $("[id^=EssayAnswers_] td:nth-child(4) span").text(function () { return $.timeago($(this).text()) });
     $("[id^=EssayAnswers_] td:nth-child(4):not(:has(span))").text(function () { return $.timeago($(this).text()) });
 
+	function displaySpinner(){
+		
+		$("body").append('<div id="SpinnerSpinn" style="position: fixed;width: 100%; height: 100%;background: black url(http://www.ajaxload.info/cache/FF/FF/FF/00/00/00/36-1.gif) center center no-repeat;opacity: .5; top:0px; left:0px;z-index:1000">MUHAHAHA</div>');
+	}
+	
+	function removeSpinner(){
+		$("#SpinnerSpinn").remove();
+	}
     function toggleRows() {
         $(".remove").toggle();
         //alert("hehe");
